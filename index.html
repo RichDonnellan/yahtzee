@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Yahtzee | </title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -16,7 +16,107 @@
     <![endif]-->
   </head>
   <body>
+    <div class="container">
+      <h1 class="text-center">Let's Play Yahtzee!</h1>
+      <div id="score-card" class="score-card">
+        <table id="upper-section" class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th class="text-uppercase"><strong>Upper Section</strong></th>
+              <th class="text-uppercase"><strong>Score</strong></th>
+            </tr>
+            <tr>
+              <td>Ones <span class="die-unicode">&#x2680;</span> = 1</td>
+              <td id="ones-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Twos <span class="die-unicode">&#x2681;</span> = 2</td>
+              <td id="twos-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Threes <span class="die-unicode">&#x2682;</span> =3</td>
+              <td id="threes-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Fours <span class="die-unicode">&#x2683;</span> = 4</td>
+              <td id="fours-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Fives <span class="die-unicode">&#x2684;</span> = 5</td>
+              <td id="fives-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Sixes <span class="die-unicode">&#x2685;</span> = 6</td>
+              <td id="sixes-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="text-uppercase"><strong>Bonus (Score 35)</strong></td>
+              <td id="upper-bonus">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="text-uppercase"><strong>Sub-Total</strong></td>
+              <td id="upper-sub">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="lower-section" class="table table-bordered table-striped">
+          <tbody>
+            <thead>
+              <tr>
+                <th class="text-uppercase"><strong>Lower Section</strong></th>
+                <th class="text-uppercase"><strong>&nbsp;</strong></th>
+              </tr>
+            </thead>
+            <tr>
+              <td>Three-of-a-kind</td>
+              <td id="x3-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Four-of-a-kind</td>
+              <td id="x4-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Full House</td>
+              <td id="fh-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Sm. Straight</td>
+              <td id="sm-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Lg. Straight</td>
+              <td id="lg-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="text-uppercase">Yahtzee</td>
+              <td id="yahtzee-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="text-uppercase">Chance</td>
+              <td id="chance-total">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="text-uppercase"><strong>Sub-Total</strong></td>
+              <td id="lower-sub">&nbsp;</td>
+            </tr>
+            <tr>
+              <td id="grand-total" class="text-uppercase"><strong>Grand Total</strong></td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="dice-board">
+        <div id="die1" class="die"></div>
+        <div id="die2" class="die"></div>
+        <div id="die3" class="die"></div>
+        <div id="die4" class="die"></div>
+        <div id="die5" class="die"></div>
+      </div>
 
+
+
+    </div>
 <!-- JavaScript Files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
