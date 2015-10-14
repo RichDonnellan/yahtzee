@@ -1,1 +1,68 @@
 @charset "UTF-8";
+
+.container {
+  padding-top: 30px;
+}
+
+.score-card {
+  max-width: 45%;
+}
+
+.players-display {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: .6rem;
+  padding-left: 8px;
+}
+
+.players-display span {
+  font-size: 1rem;
+  color: #666;
+  padding-left: 1.2rem;
+}
+
+.die-unicode {
+  font-size: 2rem;
+}
+
+.dice-board {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.die {
+  display: inline-block;
+  min-width: 80px;
+  min-height: 80px;
+  border: 1px solid #e5e5e5;
+  background-color: #f1f1f1;
+  border-radius: 1rem;
+}
+
+.solution {
+  background-color: aquamarine;
+}
+
+/* https://github.com/daneden/animate.css/blob/master/source/fading_entrances/fadeInDown.css */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
