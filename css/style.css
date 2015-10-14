@@ -1,11 +1,19 @@
 @charset "UTF-8";
 
 .container {
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
-.score-card {
-  max-width: 45%;
+.start-game, .roll-dice {
+  margin-top: 25px;
+}
+
+.rolls-wrapper {
+  display: inline-block;
+}
+
+.score-wrapper {
+  min-width: 40%;
 }
 
 .players-display {
@@ -15,9 +23,12 @@
   padding-left: 8px;
 }
 
-.players-display span {
+.player-name, .player-score {
   font-size: 1rem;
   color: #666;
+}
+
+.player-name {
   padding-left: 1.2rem;
 }
 
