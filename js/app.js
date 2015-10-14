@@ -15,16 +15,16 @@ var game = {
   // Initialize the game
   init: function () {
     $('#add-player').hide().fadeIn(1500); // Hide and fadeIn add player button
-    $('#dice-board').hide(); // Hide the dice board until game started
-    $('#score-card, #roll-dice').hide(); // Hide the score card until game started
+    $('#dice-board, #roll-dice').hide(); // Hide the dice board until game started
+    $('#score-card').hide(); // Hide the score card until game started
     $('#start-game').hide(); // Hide start button until players are added
     $('#players-display').hide(); // Hide players until start game is called
     $('#new-game').hide(); // Hide new game button until game is started
-    $('#name-input').on('keypress', function (e) { // allow keyboard entry to add player
+    $('#name-input').on('keypress', function (e) { // allow keyboard entry (enter) to add player
       if (e.which === 13) {
         game.addPlayer();
       }
-    }); // call add player method if hitting enter after input
+    });
 
     $('#add-btn').on('click', game.addPlayer); // call add player method if button clicked
     $('#start-btn').on('click', game.startGame); // call add player method
@@ -58,21 +58,24 @@ var game = {
     $('#add-btn').off('click', game.addPlayer); // remove add player click event
     $('#start-btn').off('click', game.startGame); // remove start game click event
     $('#add-player, #start-game').fadeOut();
-    $('#dice-board').delay(250).fadeIn(1000);
+    $('#dice-board, #roll-dice').delay(250).fadeIn(1000);
+    $('#score-card').delay(1200).fadeIn(1000);
     $.each(game.players, function(index) {
       $('#players-display').append('<span class="player-name">' + game.players[index].name + ':</span> ' + '<span class="player-score">' + game.players[index].score + '</span>').fadeIn();
     });
-    $('#score-card').delay(1200).fadeIn(1000);
     $('#new-game').delay(2000).fadeIn();
   },
 
   newGame: function () {
     game.players = [];
+
     $('#players-display').fadeOut();
   },
 
   createDice: function () {
-
+    var newDie = new Die(); // create a new die
+        game.dice.push(newDie); // push entry to dice array => Object
+        console.log('Die created.'); // confirmation message
   },
 
   // Dice roll functionality
@@ -84,6 +87,7 @@ var game = {
         console.log('Clicked');
         game.rollsLeft--;
         $('#rolls-left').text(game.rollsLeft);
+
       }
   },
 
@@ -108,7 +112,7 @@ var game = {
 function Player() {
   this.name = "";
   this.score = 0;
-  this.pieces = {};
+  this.categories = {};
 }
 
 //======= player object end =========//
@@ -117,8 +121,7 @@ function Player() {
 function Die () {
   this.value = null;
   this.roll = function () {
-    this.value = Math.floor((Math.random() * 6)) + 1;
-    return this.value;
+    return this.value = Math.floor((Math.random() * 6)) + 1;
   };
 }
 //======= die object end =========//
