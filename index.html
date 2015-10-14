@@ -18,95 +18,101 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Yahtzee_logo.svg" alt="Yahtzee logo"></h1>
-      <div class="container-fluid">
-        <div id="dice-board" class="pull-left">
-          <div id="die1" data-die-value="" class="die"></div>
-          <div id="die2" data-die-value="" class="die"></div>
-          <div id="die3" data-die-value="" class="die"></div>
-          <div id="die4" data-die-value="" class="die"></div>
-          <div id="die5" data-die-value="" class="die"></div>
-          <div>
-            <button class="btn btn-primary">Roll Dice</button>
-            <div>Roll: <span id="num-roll"></span></div>
+      <h1 class="text-center animated fadeInDown"><img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Yahtzee_logo.svg" alt="Yahtzee logo"></h1>
+      <div class="container">
+        <div id="add-player" class="text-center">
+          <div class="ui action input">
+            <input id="name-input" type="text" autofocus="0" placeholder="Enter your first name ...">
+            <button id="add-btn" class="ui green right labeled icon button"><i class="add user icon"></i>Add Player</button>
           </div>
         </div>
-        <div id="score-card" class="pull-right score-card">
-          <div id="players-display" class="players-display">Players</div>
-          <table class="table table-bordered table-striped">
-            <tbody>
-              <thead>
-                <tr>
-                  <th class="text-uppercase"><strong>Upper Section</strong></th>
-                  <th class="text-uppercase"><strong>Score</strong></th>
-                  <th class="text-uppercase"><strong>Lower Section</strong></th>
-                  <th class="text-uppercase"><strong>Score</strong></th>
-                </tr>
-              </thead>
-              <tr>
-                <td>Ones</td>
-                <td id="ones-total">&nbsp;</td>
-                <td>Three-of-a-kind</td>
-                <td id="x3-total">&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Twos</td>
-                <td id="twos-total">&nbsp;</td>
-                <td>Four-of-a-kind</td>
-                <td id="x4-total">&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Threes</td>
-                <td id="threes-total">&nbsp;</td>
-                <td>Full House</td>
-                <td id="fh-total">&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Fours</td>
-                <td id="fours-total">&nbsp;</td>
-                <td>Sm. Straight</td>
-                <td id="sm-total">&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Fives</td>
-                <td id="fives-total">&nbsp;</td>
-                <td>Lg. Straight</td>
-                <td id="lg-total">&nbsp;</td>
-              </tr>
-              <tr>
-                <td>Sixes</td>
-                <td id="sixes-total">&nbsp;</td>
-                <td class="text-uppercase">Yahtzee</td>
-                <td id="yahtzee-total">&nbsp;</td>
-              </tr>
-              <tr>
-                <td class="text-uppercase"><strong>Bonus <small>(Score 35)</small></strong></td>
-                <td id="upper-bonus">&nbsp;</td>
-                <td class="text-uppercase">Chance</td>
-                <td id="chance-total">&nbsp;</td>
-              </tr>
-              <tr>
-                <td class="text-uppercase"><strong>Sub-Total</strong></td>
-                <td id="upper-sub">&nbsp;</td>
-                <td class="text-uppercase"><strong>Sub-Total</strong></td>
-                <td id="lower-sub">&nbsp;</td>
-              </tr>
-              <tfoot>
-                <tr>
-                  <td class="text-uppercase"><strong>Grand Total</strong></td>
-                  <td span colspan="3" id="grand-total">&nbsp;</td>
-                </tr>
-              </tfoot>
-            </tbody>
-          </table>
-          <div class="text-right">
-            <button id="start-game" class="ui button">Start Game</button>
+        <div id="start-game" class="text-center start-game">
+          <button id="start-btn" class="ui red button">Start Game</button>
+        </div>
+        <div id="dice-board" class="pull-left">
+          <div id="die1" class="die"></div>
+          <div id="die2" class="die"></div>
+          <div id="die3" class="die"></div>
+          <div id="die4" class="die"></div>
+          <div id="die5" class="die"></div>
+          <div id="roll-dice" class="roll-dice">
+            <button id="roll-btn" class="ui button red">Roll Dice</button>
+            <div id="rolls-wrapper" class="rolls-wrapper"><strong>Roll(s) Left:</strong> <span id="rolls-left"></span></div>
           </div>
-          <div class="text-right">
-            <div class="ui left action input">
-              <button id="add-player" class="ui teal labeled icon button"><i class="add plus icon"></i>Add Player</button>
-              <input id="name-input" type="text" autofocus="0" placeholder="Type your name ...">
+        </div>
+        <div class="score-wrapper pull-right">
+          <div id="players-display" class="players-display">Players</div>
+          <div id="score-card" class="score-card">
+            <table class="table table-bordered table-striped">
+              <tbody>
+                <thead>
+                  <tr>
+                    <th class="text-uppercase"><strong>Upper Section</strong></th>
+                    <th class="text-uppercase"><strong>Score</strong></th>
+                    <th class="text-uppercase"><strong>Lower Section</strong></th>
+                    <th class="text-uppercase"><strong>Score</strong></th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td>Ones</td>
+                  <td id="ones-total">&nbsp;</td>
+                  <td>Three-of-a-kind</td>
+                  <td id="x3-total">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>Twos</td>
+                  <td id="twos-total">&nbsp;</td>
+                  <td>Four-of-a-kind</td>
+                  <td id="x4-total">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>Threes</td>
+                  <td id="threes-total">&nbsp;</td>
+                  <td>Full House</td>
+                  <td id="fh-total">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>Fours</td>
+                  <td id="fours-total">&nbsp;</td>
+                  <td>Sm. Straight</td>
+                  <td id="sm-total">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>Fives</td>
+                  <td id="fives-total">&nbsp;</td>
+                  <td>Lg. Straight</td>
+                  <td id="lg-total">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>Sixes</td>
+                  <td id="sixes-total">&nbsp;</td>
+                  <td class="text-uppercase">Yahtzee</td>
+                  <td id="yahtzee-total">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="text-uppercase"><strong>Bonus <small>(Score 35)</small></strong></td>
+                  <td id="upper-bonus">&nbsp;</td>
+                  <td class="text-uppercase">Chance</td>
+                  <td id="chance-total">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td class="text-uppercase"><strong>Sub-Total</strong></td>
+                  <td id="upper-sub">&nbsp;</td>
+                  <td class="text-uppercase"><strong>Sub-Total</strong></td>
+                  <td id="lower-sub">&nbsp;</td>
+                </tr>
+                <tfoot>
+                  <tr>
+                    <td class="text-uppercase"><strong>Grand Total</strong></td>
+                    <td span colspan="3" id="grand-total">&nbsp;</td>
+                  </tr>
+                </tfoot>
+              </tbody>
+            </table>
+            <div id="new-game" class="text-right">
+              <button id="new-btn" class="ui red button">New Game</button>
             </div>
+          </div>
           </div>
         </div>
       </div>
