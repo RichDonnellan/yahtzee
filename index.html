@@ -19,10 +19,13 @@
   <body>
     <div class="container">
       <h1 class="text-center animated fadeInDown"><img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Yahtzee_logo.svg" alt="Yahtzee logo"></h1>
+      <!--div class="ui divider"></div>
+      <div class="text-right">Random Text</div>
+      <div class="ui divider"></div-->
       <div class="container">
         <div id="add-player" class="text-center">
           <div class="ui action input">
-            <input id="name-input" type="text" autofocus="0" placeholder="Enter your first name ...">
+            <input id="name-input" type="text" autofocus="0" placeholder="Enter player name ...">
             <button id="add-btn" class="ui green right labeled icon button"><i class="add user icon"></i>Add Player</button>
           </div>
         </div>
@@ -30,17 +33,17 @@
           <button id="start-btn" class="ui red button">Start Game</button>
         </div>
         <div id="dice-board" class="pull-left">
-          <div id="die1" class="die"></div>
-          <div id="die2" class="die"></div>
-          <div id="die3" class="die"></div>
-          <div id="die4" class="die"></div>
-          <div id="die5" class="die"></div>
+          <div id="die0" class="dice"></div>
+          <div id="die1" class="dice"></div>
+          <div id="die2" class="dice"></div>
+          <div id="die3" class="dice"></div>
+          <div id="die4" class="dice"></div>
           <div id="roll-dice" class="roll-dice">
             <button id="roll-btn" class="ui button red">Roll Dice</button>
-            <div id="rolls-wrapper" class="rolls-wrapper"><strong>Roll(s) Left:</strong> <span id="rolls-left"></span></div>
+            <div id="rolls-wrapper" class="rolls-wrapper"><strong>Remaining Roll(s):</strong> <span id="rolls-left"></span></div>
           </div>
         </div>
-        <div class="score-wrapper pull-right">
+        <div id="score-wrapper" class="score-wrapper pull-right">
           <div id="players-display" class="players-display">Players</div>
           <div id="score-card" class="score-card">
             <table class="table table-bordered table-striped">
