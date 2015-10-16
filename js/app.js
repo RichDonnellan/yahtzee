@@ -2,7 +2,7 @@ console.log('Script initialized.'); // Initial log to confirm script is working
 
 // ======= Game object begin =========
 var game = {
-  maxPlayers: 4, // set max players option
+  maxPlayers: 2, // set max players option
   players: [], // players array will contain Player object(s)
   currentPlayer: {},
   dice: [], // dice array will contain 5 Die objects
@@ -24,8 +24,8 @@ var game = {
     $('#add-btn').on('click', game.addPlayer); // call add player method if button clicked
     $('#start-btn').on('click', game.startGame); // call add player method
     $('#roll-btn').on('click', game.rollDice); // call roll dice method if button clicked
-    $('#new-btn').on('click', game.newGame); // call new game method if button clicked
-    $('#score-card button').one('click', game.populateScore);
+    //$('#new-btn').on('click', game.newGame); // call new game method if button clicked
+    // $('#score-card').one('click', 'button', game.populateScore); // call populate score method on score card categories
   },
 
   // Create a new player object and add player to the players array
@@ -76,11 +76,7 @@ var game = {
 
   // Dice roll functionality
   rollDice: function() {
-    $('.dice').addClass('choose');
-    if (game.rollsLeft === 0) {
-      console.log('Next round.');
-      //game.nextRound();
-    } else {
+    $('.dice').addClass('choose'); // add pointer cursor
       console.log('Clicked'); // check button wiring
 
       $.each(game.dice, function(index) {
@@ -90,11 +86,13 @@ var game = {
           $('#die' + index).html(game.dice[index].value);
         }
       });
-    }
+
     game.rollsLeft--;
     $('#rolls-left').text(game.rollsLeft);
     $('.dice').off('click', game.chooseDice);
     $('.dice').on('click', game.chooseDice); // call roll dice method if button clicked
+    // $('#score-card').off('click', 'button', game.populateScore); // call populate score method on score card categories
+    $('#score-card').one('click', 'button', game.populateScore); // call populate score method on score card categories
   },
 
   chooseDice: function() {
@@ -113,98 +111,305 @@ var game = {
   },
 
   nextRound: function() {
-    var count = 0;
-    if (game.players.length === 1) {
-      game.playerTurn.round++;
-      game.dice = [];
-      game.rollsLeft = 3;
-      $('#rolls-left').html(game.rollsLeft);
-      console.log('Round:', game.playerTurn.round);
+    console.log('Calling function.');
+
+    game.rollsLeft = 3;
+    if(game.players[1].round === game.MAXROUND) {
+      game.getWinner();
+    } else if (game.currentPlayer === game.players[0]) {
+      game.currentPlayer.round++;
+      game.currentPlayer = game.players[1];
     } else {
-      game.playerTurn++;
+      game.currentPlayer.round++;
+      game.currentPlayer = game.players[0];
     }
+    $('#score-card button').each(function(index) {
+      console.log("==========", $(this).hasClass("disabled"),this.id);
+      switch (this.id) {
+        case "ones":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.ones.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "twos":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.twos.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "threes":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.threes.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "fours":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fours.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "fives":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fives.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "sixes":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.sixes.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "threeOfAKind":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.threeOfAKind.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "fourOfAKind":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fourOfAKind.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "smStraight":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.smStraight.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "lgStraight":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.lgStraight.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "fullHouse":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fullHouse.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "yahtzee":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.yahtzee.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+        case "chance":
+          if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.chance.chosen == false)){
+            $(this).removeClass("disabled");
+          }
+          break;
+        default:
+        break;
+
+      }
+      // switch (this.id) {
+      //   case 'ones':
+      //     if($(this).hasClass('disabled') && !game.currentPlayer.scoreCard.ones.chosen) {
+      //       $(this).removeClass('disabled');
+      //     }
+      //     break;
+      //   default:
+      //
+      // }
+
+    });
   },
 
+  // Trigger score card population
   populateScore: function() {
     console.log('Clicked');
+
     //console.log(this.id);
     switch (this.id) {
       case 'ones':
         for (var i = 0, len = game.dice.length; i < len; i++) {
           if (game.dice[i].value === 1) {
             console.log('add ones');
-            game.currentPlayer.scoreCard.ones++;
+            game.currentPlayer.scoreCard.ones.value++;
+            $('#ones-total').html(game.currentPlayer.scoreCard.ones.value);
             $(this).addClass('disabled');
+            game.currentPlayer.scoreCard.ones.chosen = true;
           }
         }
-        console.log(game.currentPlayer.scoreCard.ones);
+        game.currentPlayer.scoreCard.ones.chosen = true;
+        console.log("change ones for", game.currentPlayer.name,game.currentPlayer.scoreCard.ones);
+        $('#ones-total').html(game.currentPlayer.scoreCard.ones.value);
         game.currentPlayer.upperSubTotal();
         game.currentPlayer.updateScore();
+        game.nextRound();
         break;
       case 'twos':
         for (var i = 0, len = game.dice.length; i < len; i++) {
           if (game.dice[i].value === 2) {
             console.log('add twos');
-            game.currentPlayer.scoreCard.twos += 2;
+            game.currentPlayer.scoreCard.twos.value += 2;
+            $('#twos-total').html(game.currentPlayer.scoreCard.twos.value);
             $(this).addClass('disabled');
+            game.currentPlayer.scoreCard.twos.chosen = true;
           }
         }
-        console.log(game.currentPlayer.scoreCard.twos);
+        game.currentPlayer.scoreCard.twos.chosen = true;
+        console.log(game.currentPlayer.scoreCard.twos.value);
+        $('#twos-total').html(game.currentPlayer.scoreCard.twos.value);
         game.currentPlayer.upperSubTotal();
         game.currentPlayer.updateScore();
+        game.nextRound();
         break;
       case 'threes':
         for (var i = 0, len = game.dice.length; i < len; i++) {
           if (game.dice[i].value === 3) {
             console.log('add threes');
-            game.currentPlayer.scoreCard.threes += 3;
+            game.currentPlayer.scoreCard.threes.value += 3;
+            $('#threes-total').html(game.currentPlayer.scoreCard.threes.value);
             $(this).addClass('disabled');
           }
         }
-        console.log(game.currentPlayer.scoreCard.threes);
+        game.currentPlayer.scoreCard.threes.chosen = true;
+        console.log(game.currentPlayer.scoreCard.threes.value);
+        $('#threes-total').html(game.currentPlayer.scoreCard.threes.value);
         game.currentPlayer.upperSubTotal();
         game.currentPlayer.updateScore();
+        game.nextRound();
         break;
       case 'fours':
         for (var i = 0, len = game.dice.length; i < len; i++) {
           if (game.dice[i].value === 4) {
             console.log('add fours');
-            game.currentPlayer.scoreCard.threes += 4;
+            game.currentPlayer.scoreCard.fours.value += 4;
+            $('#fours-total').html(game.currentPlayer.scoreCard.fours.value);
             $(this).addClass('disabled');
           }
         }
-        console.log(game.currentPlayer.scoreCard.fours);
+        game.currentPlayer.scoreCard.fours.chosen = true;
+        console.log(game.currentPlayer.scoreCard.fours.value);
+        $('#fours-total').html(game.currentPlayer.scoreCard.fours.value);
         game.currentPlayer.upperSubTotal();
         game.currentPlayer.updateScore();
+        game.nextRound();
         break;
       case 'fives':
         for (var i = 0, len = game.dice.length; i < len; i++) {
           if (game.dice[i].value === 5) {
             console.log('add fives');
-            game.currentPlayer.scoreCard.fives += 5;
+            game.currentPlayer.scoreCard.fives.value += 5;
+            $('#fives-total').html(game.currentPlayer.scoreCard.fives.value);
             $(this).addClass('disabled');
           }
         }
-        console.log(game.currentPlayer.scoreCard.fives);
+        game.currentPlayer.scoreCard.fives.chosen = true;
+        console.log(game.currentPlayer.scoreCard.fives.value);
+        $('#fives-total').html(game.currentPlayer.scoreCard.fives.value);
         game.currentPlayer.upperSubTotal();
         game.currentPlayer.updateScore();
+        game.nextRound();
         break;
       case 'sixes':
         for (var i = 0, len = game.dice.length; i < len; i++) {
           if (game.dice[i].value === 6) {
             console.log('add sixes');
-            game.currentPlayer.scoreCard.sixes += 6;
+            game.currentPlayer.scoreCard.sixes.value += 6;
+            $('#sixes-total').html(game.currentPlayer.scoreCard.sixes.value);
             $(this).addClass('disabled');
           }
         }
-        console.log(game.currentPlayer.scoreCard.sixes);
+        game.currentPlayer.scoreCard.sixes.chosen = true;
+        console.log(game.currentPlayer.scoreCard.sixes.value);
+        $('#sixes-total').html(game.currentPlayer.scoreCard.sixes.value);
         game.currentPlayer.upperSubTotal();
         game.currentPlayer.updateScore();
+        game.nextRound();
+        break;
+      case 'fullHouse':
+        var unique = [];
+        for (var i = 0, len = game.dice.length; i < len; i++) {
+          unique.push(game.dice[i].value);
+        }
+        unique = unique.sort();
+        console.log(unique);
+        var u1 = unique[0]
+        var y1 = unique[3]
+        var u2 = unique[4]
+        var y2 = unique[1]
+
+          // if ( (u1 == unique[1] && u1 == unique[2] && y1 == unique[4]) || (u2 == unique[3] && u2 == unique[2] && y1 == unique[0]) ) {
+          if ((unique[0] === unique[1] && unique[2] === unique[3] && unique[3] === unique[4]) || (unique[0] === unique[1] && unique[1] === unique[2] && unique[3] && unique[4])){
+            console.log('add full house');
+            game.currentPlayer.scoreCard.fullHouse.value = 25;
+            $('#fh-total').html(game.currentPlayer.scoreCard.fullHouse.value);
+            $(this).addClass('disabled');
+          }
+       game.currentPlayer.scoreCard.fives.fullHouse = true;
+        console.log(game.currentPlayer.scoreCard.fullHouse.value);
+        $('#fh-total').html(game.currentPlayer.scoreCard.fullHouse.value);
+        game.currentPlayer.lowerSubTotal();
+        game.currentPlayer.updateScore();
+        game.nextRound();
+        break;
+      case 'smStraight':
+        var unique = [];
+        for (var i = 0, len = game.dice.length; i < len; i++) {
+          unique.push(game.dice[i].value);
+        }
+        unique = unique.removeDuplicates().join('');
+        console.log(unique);
+          if ( unique == '1234' || unique == '2345' || unique == '3456') {
+            console.log('add small straight');
+            game.currentPlayer.scoreCard.smStraight.value = 30;
+            $('#sm-total').html(game.currentPlayer.scoreCard.smStraight.value);
+            $(this).addClass('disabled');
+          }
+          game.currentPlayer.scoreCard.smStraight.chosen = true;
+        console.log(game.currentPlayer.scoreCard.smStraight.value);
+        $('#sm-total').html(game.currentPlayer.scoreCard.smStraight.value);
+        game.currentPlayer.lowerSubTotal();
+        game.currentPlayer.updateScore();
+        game.nextRound();
+        break;
+      case 'lgStraight':
+        var unique = [];
+        for (var i = 0, len = game.dice.length; i < len; i++) {
+          unique.push(game.dice[i].value);
+        }
+        unique = unique.removeDuplicates().join('');
+        console.log(unique);
+          if ( unique == '12345' || unique == '23456') {
+            console.log('add small straight');
+            game.currentPlayer.scoreCard.lgStraight.value = 40;
+            $('#lg-total').html(game.currentPlayer.scoreCard.lgStraight.value);
+            $(this).addClass('disabled');
+          }
+          game.currentPlayer.scoreCard.lgStraight.chosen = true;
+        console.log(game.currentPlayer.scoreCard.lgStraight.value);
+        $('#lg-total').html(game.currentPlayer.scoreCard.lgStraight.value);
+        game.currentPlayer.lowerSubTotal();
+        game.currentPlayer.updateScore();
+        game.nextRound();
+        break;
+      case 'yahtzee':
+        var yahtzeeCounter = 1,
+            match = game.dice[0].value;
+
+          for (var i = 1; i < 5; i++) {
+            if(game.dice[i].value !== match){
+              // console.log('add yahtzee');
+              // game.currentPlayer.scoreCard.yahtzee = 50;
+               $('#yahtzee-total').html(game.currentPlayer.scoreCard.yahtzee.value);
+              $(this).addClass('disabled');
+              game.currentPlayer.scoreCard.yahtzee.chosen = true;
+              game.nextRound();
+              break;
+            }
+            else{
+                yahtzeeCounter++;
+            }
+        }
+        if(yahtzeeCounter == 5){
+          game.currentPlayer.scoreCard.yahtzee.value = 50;
+        }
+        game.currentPlayer.scoreCard.yahtzee.chosen = true;
+        console.log(game.currentPlayer.scoreCard.yahtzee).value;
+        $('#yahtzee-total').html(game.currentPlayer.scoreCard.yahtzee.value);
+        game.currentPlayer.lowerSubTotal();
+        game.currentPlayer.updateScore();
+        game.nextRound();
+        break;
+      case 'chance':
+        for (var i = 0, len = game.dice.length; i < len; i++) {
+          console.log('add chance');
+          game.currentPlayer.scoreCard.chance.value += game.dice[i].value;
+          $('#chance-total').html(game.currentPlayer.scoreCard.chance.value);
+          $(this).addClass('disabled');
+        }
+        game.currentPlayer.scoreCard.chance.chosen = true;
+        console.log(game.currentPlayer.scoreCard.chance.value);
+        game.currentPlayer.lowerSubTotal();
+        game.currentPlayer.updateScore();
+        game.nextRound();
         break;
       default:
-
+      break;
     }
-
   },
 
   // newGame: function () {
@@ -220,7 +425,14 @@ var game = {
     // } else {
     //   console.log(Math.max.apply(null, game.players));
     // }
+    if (game.players[0].score > game.players[1].score) {
+      console.log('Player',game.players[0].name);
+    } else if(game.players[0].score < game.players[1].score) {
+      console.log('Player',game.players[1].name);
+    } else {
+      console.log('Tie');
   }
+}
 };
 
 // ======= Player object begin =========
@@ -228,19 +440,19 @@ function Player() {
   this.name = '';
   this.round = 1;
   this.scoreCard = {
-    ones: 0,
-    twos: 0,
-    threes: 0,
-    fours: 0,
-    fives: 0,
-    sixes: 0,
-    threeOfAKind: 0,
-    fourOfAKind: 0,
-    fullHouse: 0,
-    smStraight: 0,
-    lgStraight: 0,
-    yahtzee: 0,
-    chance: 0,
+    ones: { value: 0 , chosen: false},
+    twos: { value: 0 , chosen: false},
+    threes: { value: 0 , chosen: false},
+    fours: { value: 0 , chosen: false},
+    fives: { value: 0 , chosen: false},
+    sixes: { value: 0 , chosen: false},
+    threeOfAKind:{ value: 0 , chosen: false},
+    fourOfAKind: { value: 0 , chosen: false},
+    fullHouse: { value: 0 , chosen: false},
+    fullHouse: { value: 0 , chosen: false},
+    lgStraight: { value: 0 , chosen: false},
+    yahtzee: { value: 0 , chosen: false},
+    chance: { value: 0 , chosen: false},
     upperSub: 0,
     lowerSub: 0
   };
@@ -248,10 +460,10 @@ function Player() {
 }
 
 Player.prototype.upperSubTotal = function() {
-  this.scoreCard.upperSub = this.scoreCard.ones + this.scoreCard.twos + this.scoreCard.threes + this.scoreCard.fours + this.scoreCard.fives + this.scoreCard.sixes;
+  this.scoreCard.upperSub = this.scoreCard.ones.value + this.scoreCard.twos.value + this.scoreCard.threes.value + this.scoreCard.fours.value + this.scoreCard.fives.value + this.scoreCard.sixes.value;
 }
 Player.prototype.lowerSubTotal = function() {
-  this.scoreCard.lowerSub = this.scoreCard.threeOfAKind + this.scoreCard.fourOfAKind + this.scoreCard.fullHouse + this.scoreCard.smStraight + this.scoreCard.lgStraight + this.scoreCard.yahtzee + this.scoreCard.chance;
+  this.scoreCard.lowerSub = this.scoreCard.threeOfAKind.value + this.scoreCard.fourOfAKind.value + this.scoreCard.fullHouse.value + this.scoreCard.fullHouse.value + this.scoreCard.lgStraight.value + this.scoreCard.yahtzee.value + this.scoreCard.chance.value;
 }
 Player.prototype.updateScore = function() {
   this.score = this.scoreCard.upperSub + this.scoreCard.lowerSub;
@@ -275,6 +487,16 @@ function Category() {
   this.name = null;
   this.value = null;
   this.chosen = false;
+}
+
+Array.prototype.removeDuplicates = function (){
+  var temp=new Array();
+  this.sort();
+  for(i=0;i<this.length;i++){
+    if(this[i]==this[i+1]) {continue}
+    temp[temp.length]=this[i];
+  }
+  return temp;
 }
 
 game.init(); // Initialize game
