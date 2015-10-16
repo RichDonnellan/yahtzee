@@ -23,6 +23,12 @@
   padding-left: 8px;
 }
 
+.current-player {
+  background-color: #db2828;
+  border-radius: 5px;
+  color: #fff;
+}
+
 .player-name, .player-score {
   font-size: 1rem;
   color: #666;
