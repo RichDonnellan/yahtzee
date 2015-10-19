@@ -20,7 +20,7 @@
     <div class="container">
       <h1 class="text-center animated fadeInDown"><img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Yahtzee_logo.svg" alt="Yahtzee logo"></h1>
       <!--div class="ui divider"></div>
-      <div class="text-right">Random Text</div>
+      <!--div class="text-right">Random Text</div>
       <div class="ui divider"></div-->
       <div class="container">
         <div id="add-player" class="text-center">
@@ -46,7 +46,7 @@
         <div id="score-wrapper" class="score-wrapper pull-right">
           <div id="players-display" class="players-display">Players</div>
           <div id="score-card" class="score-card">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered">
               <tbody>
                 <thead>
                   <tr>
@@ -57,45 +57,46 @@
                   </tr>
                 </thead>
                 <tr>
-                  <td><button id="ones" class="ui fluid button tiny transparent">Ones</button></td>
+                  <td><button id="ones" class="ui fluid button tiny transparent-btn">Ones</button></td>
                   <td id="ones-total">&nbsp;</td>
-                  <td><button id="threeOfAKind" class="ui fluid button tiny transparent">Three-of-a-kind</button></td>
-                  <td id="x3-total">&nbsp;</td>
+                  <td><button id="threeOfAKind" class="ui fluid button tiny transparent-btn">Three-of-a-kind</button></td>
+                  <td id="threeOfAKind-total">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td><button id="twos"class="ui fluid button tiny transparent">Twos</button></td>
+                  <td><button id="twos"class="ui fluid button tiny transparent-btn">Twos</button></td>
                   <td id="twos-total">&nbsp;</td>
-                  <td><button id="fourOfAKind" class="ui fluid button tiny transparent">Four-of-a-kind</button></td>
-                  <td id="x4-total">&nbsp;</td>
+                  <td><button id="fourOfAKind" class="ui fluid button tiny transparent-btn">Four-of-a-kind</button></td>
+                  <td id="fourOfAKind-total">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td><button id="threes" class="ui fluid button tiny transparent">Threes</button></td>
+                  <td><button id="threes" class="ui fluid button tiny transparent-btn">Threes</button></td>
                   <td id="threes-total">&nbsp;</td>
-                  <td><button id="fullHouse" class="ui fluid button tiny transparent">Full House</button></td>
-                  <td id="fh-total">&nbsp;</td>
+                  <td><button id="fullHouse" class="ui fluid button tiny transparent-btn">Full House</button></td>
+                  <td id="fullHouse-total">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td><button id="fours" class="ui fluid button tiny transparent">Fours</button></td>
+                  <td><button id="fours" class="ui fluid button tiny transparent-btn">Fours</button></td>
                   <td id="fours-total">&nbsp;</td>
-                  <td><button id="smStraight" class="ui fluid button tiny transparent">Sm. Straight</button></td>
-                  <td id="sm-total">&nbsp;</td>
+                  <td><button id="smStraight" class="ui fluid button tiny transparent-btn">Sm. Straight</button></td>
+                  <td id="smStraight-total">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td><button id="fives" class="ui fluid button tiny transparent">Fives</button></td>
+                  <td><button id="fives" class="ui fluid button tiny transparent-btn">Fives</button></td>
                   <td id="fives-total">&nbsp;</td>
-                  <td><button id="lgStraight" class="ui fluid button tiny transparent">Lg. Straight</button></td>
-                  <td id="lg-total">&nbsp;</td>
+                  <td><button id="lgStraight" class="ui fluid button tiny transparent-btn">Lg. Straight</button></td>
+                  <td id="lgStraight-total">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td><button id="sixes" class="ui fluid button tiny transparent">Sixes</button></td>
+                  <td><button id="sixes" class="ui fluid button tiny transparent-btn">Sixes</button></td>
                   <td id="sixes-total">&nbsp;</td>
-                  <td class="text-uppercase"><button id="yahtzee"class="ui fluid button tiny transparent">Yahtzee</button></td>
+                  <td class="text-uppercase"><button id="yahtzee"class="ui fluid button tiny transparent-btn">Yahtzee</button></td>
                   <td id="yahtzee-total">&nbsp;</td>
                 </tr>
+                <tfoot>
                 <tr>
-                  <td class="text-uppercase"><strong>Bonus <small>(Score 35)</small></strong></td>
+                  <td class="text-uppercase"><!--strong>Bonus <small>(Score 35)</small></strong--></td>
                   <td id="upper-bonus">&nbsp;</td>
-                  <td class="text-uppercase"><button id="chance" class="ui fluid button tiny transparent">Chance</button></td>
+                  <td class="text-uppercase"><button id="chance" class="ui fluid button tiny transparent-btn">Chance</button></td>
                   <td id="chance-total">&nbsp;</td>
                 </tr>
                 <tr>
@@ -104,12 +105,7 @@
                   <td class="text-uppercase"><strong>Sub-Total</strong></td>
                   <td id="lowerSub">&nbsp;</td>
                 </tr>
-                <tfoot>
-                  <tr>
-                    <td class="text-uppercase"><strong>Grand Total</strong></td>
-                    <td span colspan="3" id="grand-total">&nbsp;</td>
-                  </tr>
-                </tfoot>
+              </tfoot>
               </tbody>
             </table>
             <div id="new-game" class="text-right">
