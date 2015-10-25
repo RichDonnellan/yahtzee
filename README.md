@@ -39,16 +39,16 @@ Players will take turns interacting with the dice and score card areas. To roll 
 
 
 ##User Stories
-As a player, I have the option to play the game with a single partner.
-
-As a player, I control the game with a mouse and must alternate rounds with my competitor(s).
+As a player, I have the option to play a full game.
 
 As a player, I can enter my name before playing, so that the experience is more personalized on-screen.
 
+As a player, I control the game with a mouse and can simulate dice rolls and populate my score based on the outcome of the dice.
+
 ##Future Implementations
 
-As a player, I have the option to play against the computer so I can enjoy the game experience solo.
+As a player, I have the option to play against the computer so I can enjoy a competitive game experience solo.
 
 As a player, I have the option to play against multiple players.
 
-As a player, I can take advantage of the Yahtzee Bonus and Joker rules.
+As a player, I can take advantage of the Upper Bonus, Yahtzee Bonus and Joker rules.
