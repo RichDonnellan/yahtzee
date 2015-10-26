@@ -21,12 +21,11 @@ var game = {
         game.addPlayer();
       }
     });
-    // Set click events
+    // Set global click events
     $('#add-btn').on('click', game.addPlayer); // call add player method if button clicked
     $('#start-btn').on('click', game.startGame); // call add player method
     $('#roll-btn').on('click', game.rollDice); // call roll dice method if button clicked
     //$('#new-btn').on('click', game.newGame); // call new game method if button clicked
-    // $('#score-card').one('click', 'button', game.populateScore); // call populate score method on score card categories
   },
 
   // Create a new player object and add player to the players array
@@ -82,7 +81,7 @@ var game = {
       $.each(game.dice, function(index) {
         if (!game.dice[index].held) {
           game.dice[index].roll();
-          $('#die' + index).html(game.dice[index].value);
+          $('#die' + index).html(diePip);
         }
       });
 
@@ -430,11 +429,46 @@ Player.prototype.updateScore = function() {
 
 // ======= Die object begin =========
 function Die() {
+  var openSVG = '<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
+      openG = '<g fill="#000">',
+      pip = '',
+      closeG = '</g>',
+      closeSVG = '</svg>',
+      diePip = '',
+      one = '<circle cx="39.5" cy="39.5" r="7.5"/>',
+      two = '<circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/>',
+      three = '<circle cx="60.5" cy="17.5" r="7.5"/><circle cx="39.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/>',
+      four = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>',
+      five = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="39.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>',
+      six = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="39.5" r="7.5"/><circle cx="60.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>';
   this.value = null;
   this.held = false;
   this.roll = function() {
     //console.log('Rolling: ', this);
     this.value = Math.floor((Math.random() * 6)) + 1;
+    switch (this.value) {
+      case 1:
+        pip = one;
+        break;
+      case 2:
+        pip = two;
+        break;
+      case 3:
+        pip = three;
+        break;
+      case 4:
+        pip = four;
+        break;
+      case 5:
+        pip = five;
+        break;
+      case 6:
+        pip = six;
+        break;
+      default:
+        break;
+    }
+    diePip = openSVG + openG + pip + closeG + closeSVG;
     console.log('Die value:', this.value);
   };
 }
