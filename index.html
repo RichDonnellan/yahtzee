@@ -38,7 +38,7 @@
           <div id="die2" class="dice"></div>
           <div id="die3" class="dice"></div>
           <div id="die4" class="dice"></div>
-          <div id="roll-dice" class="roll-dice">
+          <div id="roll-dice" class="roll-dice text-center">
             <button id="roll-btn" class="ui button red">Roll Dice</button>
             <div id="rolls-wrapper" class="rolls-wrapper"><strong>Remaining Roll(s):</strong> <span id="rolls-left"></span></div>
           </div>
@@ -49,7 +49,7 @@
             <table class="table table-bordered">
               <tbody>
                 <thead>
-                  <tr>
+                  <tr class="text-center">
                     <th class="text-uppercase"><strong>Upper Section</strong></th>
                     <th class="text-uppercase"><strong>Score</strong></th>
                     <th class="text-uppercase"><strong>Lower Section</strong></th>
@@ -98,13 +98,15 @@
                   <td class="text-uppercase"><button id="chance" class="ui fluid button tiny transparent-btn">Chance</button></td>
                   <td id="chance-total" class="score">&nbsp;</td>
                 </tr>
+              </tbody>
+              <tfoot>
                 <tr>
                   <td class="text-uppercase"><strong>Sub-Total</strong></td>
                   <td id="upperSub" class="score">&nbsp;</td>
                   <td class="text-uppercase"><strong>Sub-Total</strong></td>
                   <td id="lowerSub" class="score">&nbsp;</td>
                 </tr>
-              </tbody>
+              </tfoot>
             </table>
             <div id="new-game" class="text-right">
               <button id="new-btn" class="ui red button">New Game</button>

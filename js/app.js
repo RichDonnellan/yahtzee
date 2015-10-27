@@ -76,6 +76,7 @@ var game = {
 
   // Dice roll functionality
   rollDice: function() {
+    if (game.rollsLeft !== 0) {
     $('.dice').addClass('choose'); // add pointer cursor
       console.log('Clicked'); // check button wiring
       $.each(game.dice, function(index) {
@@ -84,9 +85,11 @@ var game = {
           $('#die' + index).html(diePip);
         }
       });
-
-    game.rollsLeft--;
-    $('#rolls-left').text(game.rollsLeft);
+      game.rollsLeft--;
+      $('#rolls-left').text(game.rollsLeft);
+    } else {
+      alert('You must score your turn before you can roll again.')
+    }
     $('.dice').off('click', game.chooseDice);
     $('.dice').on('click', game.chooseDice); // call roll dice method if button clicked
     $('#score-card').off('click', 'button', game.populateScore); // call populate score method on score card categories
@@ -124,6 +127,7 @@ var game = {
     game.currentPlayer.round++;
     console.log('Round:', game.currentPlayer.round);
     $('.dice').off('click', game.chooseDice).removeClass('choose');
+    $('#score-card').off('click', 'button', game.populateScore); // call populate score method on score card categories
 
     if (game.currentPlayer.round === game.MAXROUND) {
       game.getWinner();
@@ -293,8 +297,8 @@ var game = {
           fhUnique.push(game.dice[i].value);
         }
         fhUnique = fhUnique.sort();
-
-        if ((fhUnique[0] === fhUnique[1] && fhUnique[2] === fhUnique[3] && fhUnique[3] === fhUnique[4]) || (fhUnique[0] === fhUnique[1] && fhUnique[1] === fhUnique[2] && fhUnique[3] && fhUnique[4])) {
+        // [0]===[1] [2]===[3]===[4]
+        if ((fhUnique[0] === fhUnique[1]) && (fhUnique[2] === fhUnique[3] && fhUnique[2] === fhUnique[4]) || (fhUnique[0] === fhUnique[1] && fhUnique[0] === fhUnique[2]) && (fhUnique[3] && fhUnique[4])) {
           console.log('add ' + self);
           square[self].value = 25;
         }
@@ -306,7 +310,7 @@ var game = {
         }
         smUnique = smUnique.removeDuplicates().join('');
         console.log(smUnique);
-        if (smUnique === '1234' || smUnique === '2345' || smUnique === '3456') {
+        if (smUnique.indexOf('1234') !== -1 || smUnique.indexOf('2345') !== -1 || smUnique.indexOf('3456') !== -1) {
           console.log('add ' + self);
           square[self].value = 30;
         }
@@ -316,31 +320,41 @@ var game = {
         for (var i = 0; i < game.TOTALDICE; i++) {
           lgUnique.push(game.dice[i].value);
         }
-        lgUnique = lgUnique.removeDuplicates().join('');
+        lgUnique = lgUnique.sort().join('');
         console.log(lgUnique);
-        if (lgUnique === '12345' || lgUnique === '23456') {
+        if (lgUnique.indexOf('12345') !== -1 || lgUnique.indexOf('23456') !== -1) {
           console.log('add ' + self);
           square[self].value = 40;
-
         }
         break;
       case 'yahtzee':
-        var yahtzeeCounter = 1,
-            match = game.dice[0].value;
-
+        var yatzUnique = [];
         for (var i = 0; i < game.TOTALDICE; i++) {
-          if (game.dice[i].value !== match) {
-            // console.log('add yahtzee');
-            // square.yahtzee = 50;
-            break;
-          } else {
-            yahtzeeCounter++;
-          }
+          yatzUnique.push(game.dice[i].value);
         }
-        if (yahtzeeCounter === game.TOTALDICE) {
+        yatzUnique = yatzUnique.allValuesSame();
+        if (yatzUnique) {
+          console.log('add ' + self);
           square[self].value = 50;
         }
-        break;
+          break;
+      // case 'yahtzee':
+      //   var yahtzeeCounter = 1,
+      //       match = game.dice[0].value;
+      //
+      //   for (var i = 0; i < game.TOTALDICE; i++) {
+      //     if (game.dice[i].value !== match) {
+      //       // console.log('add yahtzee');
+      //       // square.yahtzee = 50;
+      //       break;
+      //     } else {
+      //       yahtzeeCounter++;
+      //     }
+      //   }
+      //   if (yahtzeeCounter === game.TOTALDICE) {
+      //     square[self].value = 50;
+      //   }
+      //   break;
       case 'chance':
         for (var i = 0; i < game.TOTALDICE; i++) {
           console.log('add ' + self);
@@ -429,21 +443,21 @@ Player.prototype.updateScore = function() {
 
 // ======= Die object begin =========
 function Die() {
-  var openSVG = '<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
-      openG = '<g fill="#000">',
-      pip = '',
-      closeG = '</g>',
-      closeSVG = '</svg>',
-      diePip = '',
-      one = '<circle cx="39.5" cy="39.5" r="7.5"/>',
-      two = '<circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/>',
-      three = '<circle cx="60.5" cy="17.5" r="7.5"/><circle cx="39.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/>',
-      four = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>',
-      five = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="39.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>',
-      six = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="39.5" r="7.5"/><circle cx="60.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>';
   this.value = null;
   this.held = false;
   this.roll = function() {
+    var openSVG = '<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
+        openG = '<g fill="#000">',
+        pip = '',
+        closeG = '</g>',
+        closeSVG = '</svg>',
+        diePip = '',
+        one = '<circle cx="39.5" cy="39.5" r="7.5"/>',
+        two = '<circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/>',
+        three = '<circle cx="60.5" cy="17.5" r="7.5"/><circle cx="39.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/>',
+        four = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>',
+        five = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="39.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>',
+        six = '<circle cx="18.5" cy="17.5" r="7.5"/><circle cx="60.5" cy="17.5" r="7.5"/><circle cx="18.5" cy="39.5" r="7.5"/><circle cx="60.5" cy="39.5" r="7.5"/><circle cx="18.5" cy="61.5" r="7.5"/><circle cx="60.5" cy="61.5" r="7.5"/>';
     //console.log('Rolling: ', this);
     this.value = Math.floor((Math.random() * 6)) + 1;
     switch (this.value) {
@@ -473,7 +487,6 @@ function Die() {
   };
 }
 
-
 //======= Category object begin =========//
 function Category() {
   this.name = null;
@@ -482,13 +495,23 @@ function Category() {
 }
 
 Array.prototype.removeDuplicates = function (){
-  var temp=new Array();
+  var temp = [];
   this.sort();
-  for(i=0;i<this.length;i++){
-    if(this[i]==this[i+1]) {continue}
-    temp[temp.length]=this[i];
+  for (i = 0; i < this.length; i++) {
+    if (this[i] === this[i + 1]) {continue}
+    temp[temp.length] = this[i];
   }
   return temp;
+}
+
+Array.prototype.allValuesSame = function() {
+  for (var i = 1; i < this.length; i++) {
+    if (this[i] !== this[0]) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
 game.init(); // Initialize game

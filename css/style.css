@@ -9,7 +9,8 @@
 }
 
 .rolls-wrapper {
-  display: inline-block;
+  display: block;
+  margin-top: 1.2rem;
 }
 
 .score-wrapper {
@@ -72,14 +73,19 @@ svg, svg g {
   fill: #666;
 }
 
-.table>tbody>tr>td {
+.table>tbody>tr>td, .table>tfoot>tr>td {
   vertical-align: middle;
+  text-align: center;
 }
 
-.table>tbody>tr>td.score {
+.table>tbody>tr>td.score, .table>tfoot>tr>td.score {
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+th {
+  text-align: center;
 }
 
 .disabled {
