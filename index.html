@@ -22,94 +22,102 @@
       <!--div class="ui divider"></div>
       <div class="text-right">Random Text</div>
       <div class="ui divider"></div-->
-      <div class="container">
-        <div id="add-player" class="text-center">
-          <div class="ui action input">
-            <input id="name-input" type="text" autofocus="0" placeholder="Enter player name ...">
-            <button id="add-btn" class="ui green right labeled icon button"><i class="add user icon"></i>Add Player</button>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="add-player" class="text-center">
+            <div class="ui action input">
+              <input id="name-input" type="text" autofocus="0" placeholder="Enter player name ...">
+              <button id="add-btn" class="ui green right labeled icon button"><i class="add user icon"></i>Add Player</button>
+            </div>
+          </div>
+          <div id="start-game" class="text-center start-game">
+            <button id="start-btn" class="ui red button">Start Game</button>
           </div>
         </div>
-        <div id="start-game" class="text-center start-game">
-          <button id="start-btn" class="ui red button">Start Game</button>
-        </div>
-        <div id="dice-board" class="pull-left">
-          <div id="die0" class="dice"></div>
-          <div id="die1" class="dice"></div>
-          <div id="die2" class="dice"></div>
-          <div id="die3" class="dice"></div>
-          <div id="die4" class="dice"></div>
-          <div id="roll-dice" class="roll-dice text-center">
-            <button id="roll-btn" class="ui button red">Roll Dice</button>
-            <div id="rolls-wrapper" class="rolls-wrapper"><strong>Remaining Roll(s):</strong> <span id="rolls-left"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-sm-4">
+          <div id="dice-board" class="pull-left">
+            <div id="die0" class="dice"></div>
+            <div id="die1" class="dice"></div>
+            <div id="die2" class="dice"></div>
+            <div id="die3" class="dice"></div>
+            <div id="die4" class="dice"></div>
+            <div id="roll-dice" class="roll-dice text-center">
+              <button id="roll-btn" class="ui button red">Roll Dice</button>
+              <div id="rolls-wrapper" class="rolls-wrapper"><strong>Remaining Roll(s):</strong> <span id="rolls-left"></span></div>
+            </div>
           </div>
         </div>
-        <div id="score-wrapper" class="score-wrapper pull-right">
-          <div id="players-display" class="players-display">Players</div>
-          <div id="score-card" class="score-card">
-            <table class="table table-bordered">
-              <tbody>
-                <thead>
-                  <tr class="text-center">
-                    <th class="text-uppercase"><strong>Upper Section</strong></th>
-                    <th class="text-uppercase"><strong>Score</strong></th>
-                    <th class="text-uppercase"><strong>Lower Section</strong></th>
-                    <th class="text-uppercase"><strong>Score</strong></th>
+        <div class="col-md-6 col-sm-8">
+          <div id="score-wrapper" class="score-wrapper pull-right">
+            <div id="players-display" class="players-display">Players</div>
+            <div id="score-card" class="score-card">
+              <table class="ui celled table">
+                <tbody>
+                  <thead>
+                    <tr class="text-center">
+                      <th class="text-uppercase"><strong>Upper Section</strong></th>
+                      <th class="text-uppercase"><strong>Score</strong></th>
+                      <th class="text-uppercase"><strong>Lower Section</strong></th>
+                      <th class="text-uppercase"><strong>Score</strong></th>
+                    </tr>
+                  </thead>
+                  <tr>
+                    <td><button id="ones" class="ui fluid button tiny transparent-btn">Ones</button></td>
+                    <td id="ones-total" class="score">&nbsp;</td>
+                    <td><button id="threeOfAKind" class="ui fluid button tiny transparent-btn">Three-of-a-kind</button></td>
+                    <td id="threeOfAKind-total" class="score">&nbsp;</td>
                   </tr>
-                </thead>
-                <tr>
-                  <td><button id="ones" class="ui fluid button tiny transparent-btn">Ones</button></td>
-                  <td id="ones-total" class="score">&nbsp;</td>
-                  <td><button id="threeOfAKind" class="ui fluid button tiny transparent-btn">Three-of-a-kind</button></td>
-                  <td id="threeOfAKind-total" class="score">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td><button id="twos"class="ui fluid button tiny transparent-btn">Twos</button></td>
-                  <td id="twos-total" class="score">&nbsp;</td>
-                  <td><button id="fourOfAKind" class="ui fluid button tiny transparent-btn">Four-of-a-kind</button></td>
-                  <td id="fourOfAKind-total" class="score">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td><button id="threes" class="ui fluid button tiny transparent-btn">Threes</button></td>
-                  <td id="threes-total" class="score">&nbsp;</td>
-                  <td><button id="fullHouse" class="ui fluid button tiny transparent-btn">Full House</button></td>
-                  <td id="fullHouse-total" class="score">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td><button id="fours" class="ui fluid button tiny transparent-btn">Fours</button></td>
-                  <td id="fours-total" class="score">&nbsp;</td>
-                  <td><button id="smStraight" class="ui fluid button tiny transparent-btn">Sm. Straight</button></td>
-                  <td id="smStraight-total" class="score">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td><button id="fives" class="ui fluid button tiny transparent-btn">Fives</button></td>
-                  <td id="fives-total" class="score">&nbsp;</td>
-                  <td><button id="lgStraight" class="ui fluid button tiny transparent-btn">Lg. Straight</button></td>
-                  <td id="lgStraight-total" class="score">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td><button id="sixes" class="ui fluid button tiny transparent-btn">Sixes</button></td>
-                  <td id="sixes-total" class="score">&nbsp;</td>
-                  <td class="text-uppercase"><button id="yahtzee"class="ui fluid button tiny transparent-btn">Yahtzee</button></td>
-                  <td id="yahtzee-total" class="score">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td class="text-uppercase"><!--strong>Bonus <small>(Score 35)</small></strong--></td>
-                  <td id="upper-bonus" class="score">&nbsp;</td>
-                  <td class="text-uppercase"><button id="chance" class="ui fluid button tiny transparent-btn">Chance</button></td>
-                  <td id="chance-total" class="score">&nbsp;</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td class="text-uppercase"><strong>Sub-Total</strong></td>
-                  <td id="upperSub" class="score">&nbsp;</td>
-                  <td class="text-uppercase"><strong>Sub-Total</strong></td>
-                  <td id="lowerSub" class="score">&nbsp;</td>
-                </tr>
-              </tfoot>
-            </table>
-            <div id="new-game" class="text-right">
-              <button id="new-btn" class="ui red button">New Game</button>
+                  <tr>
+                    <td><button id="twos"class="ui fluid button tiny transparent-btn">Twos</button></td>
+                    <td id="twos-total" class="score">&nbsp;</td>
+                    <td><button id="fourOfAKind" class="ui fluid button tiny transparent-btn">Four-of-a-kind</button></td>
+                    <td id="fourOfAKind-total" class="score">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td><button id="threes" class="ui fluid button tiny transparent-btn">Threes</button></td>
+                    <td id="threes-total" class="score">&nbsp;</td>
+                    <td><button id="fullHouse" class="ui fluid button tiny transparent-btn">Full House</button></td>
+                    <td id="fullHouse-total" class="score">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td><button id="fours" class="ui fluid button tiny transparent-btn">Fours</button></td>
+                    <td id="fours-total" class="score">&nbsp;</td>
+                    <td><button id="smStraight" class="ui fluid button tiny transparent-btn">Sm. Straight</button></td>
+                    <td id="smStraight-total" class="score">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td><button id="fives" class="ui fluid button tiny transparent-btn">Fives</button></td>
+                    <td id="fives-total" class="score">&nbsp;</td>
+                    <td><button id="lgStraight" class="ui fluid button tiny transparent-btn">Lg. Straight</button></td>
+                    <td id="lgStraight-total" class="score">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td><button id="sixes" class="ui fluid button tiny transparent-btn">Sixes</button></td>
+                    <td id="sixes-total" class="score">&nbsp;</td>
+                    <td class="text-uppercase"><button id="yahtzee"class="ui fluid button tiny transparent-btn">Yahtzee</button></td>
+                    <td id="yahtzee-total" class="score">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td class="text-uppercase"><strong>Bonus <small>(Score 35)</small></strong></td>
+                    <td id="upper-bonus" class="score">&nbsp;</td>
+                    <td class="text-uppercase"><button id="chance" class="ui fluid button tiny transparent-btn">Chance</button></td>
+                    <td id="chance-total" class="score">&nbsp;</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td class="text-uppercase"><strong>Sub-Total</strong></td>
+                    <td id="upperSub" class="score">&nbsp;</td>
+                    <td class="text-uppercase"><strong>Sub-Total</strong></td>
+                    <td id="lowerSub" class="score">&nbsp;</td>
+                  </tr>
+                </tfoot>
+              </table>
+              <div id="new-game" class="text-right">
+                <button id="new-btn" class="ui red button">New Game</button>
+              </div>
             </div>
           </div>
           </div>

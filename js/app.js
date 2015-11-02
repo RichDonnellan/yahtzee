@@ -132,100 +132,6 @@ var game = {
     if (game.currentPlayer.round === game.MAXROUND) {
       game.getWinner();
     }
-
-    // if(game.players[1].round === game.MAXROUND) {
-    //   game.getWinner();
-    // } else if (game.currentPlayer === game.players[0]) {
-    //   game.currentPlayer.round++;
-    //   game.currentPlayer = game.players[1];
-    // } else {
-    //   game.currentPlayer.round++;
-    //   game.currentPlayer = game.players[0];
-    // }
-    // $('#score-card button').each(function(index) {
-    //   console.log("==========", $(this).hasClass("disabled"),this.id);
-    //   switch (this.id) {
-    //     case "ones":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.ones.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("ones");
-    //     case "twos":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.twos.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("twos");
-    //     case "threes":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.threes.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("threes");
-    //     case "fours":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fours.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("fours");
-    //     case "fives":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fives.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("fives");
-    //     case "sixes":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.sixes.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("sixes");
-    //     case "threeOfAKind":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.threeOfAKind.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("threeOfAKind");
-    //     case "fourOfAKind":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fourOfAKind.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("fourOfAKind");
-    //     case "smStraight":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.smStraight.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("smStraight");
-    //     case "lgStraight":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.lgStraight.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("lgStraight");
-    //     case "fullHouse":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.fullHouse.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("fullHouse");
-    //     case "yahtzee":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.yahtzee.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("yahtzee");
-    //     case "chance":
-    //       if(($(this).hasClass("disabled")) && (game.currentPlayer.scoreCard.chance.chosen == false)){
-    //         $(this).removeClass("disabled");
-    //       }
-    //       game.changeScoreCard("chance");
-    //       break;
-    //     default:
-    //     break;
-    //
-    //   }
-      // switch (this.id) {
-      //   case 'ones':
-      //     if($(this).hasClass('disabled') && !game.currentPlayer.scoreCard.ones.chosen) {
-      //       $(this).removeClass('disabled');
-      //     }
-      //     break;
-      //   default:
-      //
-      // }
-
-    // });
   },
 
   // Trigger score card population
@@ -233,64 +139,45 @@ var game = {
     console.log('Clicked');
     var self = this.id,
         square = game.currentPlayer.scoreCard;
+
+    // Handles scoring for ones through sixes
+    function scoreSinglePip(pip) {
+      for (var i = 0; i < game.TOTALDICE; i++) {
+        if (game.dice[i].value === pip) {
+          console.log('add ' + self);
+          square[self].value += pip;
+        }
+      }
+    }
+
     //console.log(this.id);
     switch (this.id) {
       case 'ones':
-        for (var i = 0; i < game.TOTALDICE; i++) {
-          if (game.dice[i].value === 1) {
-            console.log('add ' + self);
-            square[self].value++;
-          }
-        }
+        scoreSinglePip(1);
         break;
       case 'twos':
-        for (var i = 0; i < game.TOTALDICE; i++) {
-          if (game.dice[i].value === 2) {
-            console.log('add ' + self);
-            square[self].value += 2;
-          }
-        }
+        scoreSinglePip(2);
         break;
       case 'threes':
-        for (var i = 0; i < game.TOTALDICE; i++) {
-          if (game.dice[i].value === 3) {
-            console.log('add ' + self);
-            square[self].value += 3;
-          }
-        }
+        scoreSinglePip(3);
         break;
       case 'fours':
-        for (var i = 0; i < game.TOTALDICE; i++) {
-          if (game.dice[i].value === 4) {
-            console.log('add ' + self);
-            square[self].value += 4;
-          }
-        }
+        scoreSinglePip(4);
         break;
       case 'fives':
-        for (var i = 0; i < game.TOTALDICE; i++) {
-          if (game.dice[i].value === 5) {
-            console.log('add ' + self);
-            square[self].value += 5;
-          }
-        }
-        break;
+        scoreSinglePip(5);
+        break
       case 'sixes':
+        scoreSinglePip(6);
+        break;
+      case 'threeOfAKind':
         for (var i = 0; i < game.TOTALDICE; i++) {
           if (game.dice[i].value === 6) {
             console.log('add ' + self);
-            square[self].value += 6;
+            square[self].value += game.dice[i].value;
           }
         }
         break;
-        case 'threeOfAKind':
-          for (var i = 0; i < game.TOTALDICE; i++) {
-            if (game.dice[i].value === 6) {
-              console.log('add ' + self);
-              //square.sixes.value += 6;
-            }
-          }
-          break;
       case 'fullHouse':
         var fhUnique = [];
         for (var i = 0; i < game.TOTALDICE; i++) {
@@ -338,23 +225,6 @@ var game = {
           square[self].value = 50;
         }
           break;
-      // case 'yahtzee':
-      //   var yahtzeeCounter = 1,
-      //       match = game.dice[0].value;
-      //
-      //   for (var i = 0; i < game.TOTALDICE; i++) {
-      //     if (game.dice[i].value !== match) {
-      //       // console.log('add yahtzee');
-      //       // square.yahtzee = 50;
-      //       break;
-      //     } else {
-      //       yahtzeeCounter++;
-      //     }
-      //   }
-      //   if (yahtzeeCounter === game.TOTALDICE) {
-      //     square[self].value = 50;
-      //   }
-      //   break;
       case 'chance':
         for (var i = 0; i < game.TOTALDICE; i++) {
           console.log('add ' + self);
@@ -371,20 +241,31 @@ var game = {
     $(this).addClass('disabled');
     game.currentPlayer.upperSubTotal();
     game.currentPlayer.lowerSubTotal();
+    game.applyBonus();
     game.currentPlayer.updateScore();
     game.nextRound();
-
   },
 
-  // newGame: function () {
-  //   game.players = [];
-  //   $('#players-display').fadeOut();
-  // },
+  applyBonus: function() {
+    if (game.currentPlayer.scoreCard.upperSub >= 63) {
+      game.currentPlayer.scoreCard.bonus = 35;
+      $('#upper-bonus').html(game.currentPlayer.scoreCard.bonus);
+    } else {
+      $('#upper-bonus').html(game.currentPlayer.scoreCard.bonus);
+    }
+  },
+
+  newGame: function () {
+    game.currentPlayer.scoreCard.score = 0;
+    $('#players-display').fadeOut();
+  },
 
   // Get winner functionality
   getWinner: function() {
+    $(this).addClass('disabled');
+    $('#roll-btn').off('click', game.rollDice);
     console.log('Game Over', game.currentPlayer.score);
-    alert('Game Over', game.currentPlayer.score);
+    alert('Game Over. Your score was :' + game.currentPlayer.score);
     // if (game.players.length === 1) {
     //   alert('Your score is: ' + player.score);
     // } else {
@@ -423,6 +304,7 @@ function Player() {
     lgStraight: { value: 0, chosen: false},
     yahtzee: { value: 0, chosen: false},
     chance: { value: 0, chosen: false},
+    bonus: 0,
     upperSub: 0,
     lowerSub: 0
   };
@@ -437,7 +319,7 @@ Player.prototype.lowerSubTotal = function() {
   this.scoreCard.lowerSub = this.scoreCard.threeOfAKind.value + this.scoreCard.fourOfAKind.value + this.scoreCard.fullHouse.value + this.scoreCard.smStraight.value + this.scoreCard.lgStraight.value + this.scoreCard.yahtzee.value + this.scoreCard.chance.value;
 }
 Player.prototype.updateScore = function() {
-  this.score = this.scoreCard.upperSub + this.scoreCard.lowerSub;
+  this.score = this.scoreCard.upperSub + this.scoreCard.lowerSub + this.scoreCard.bonus;
 }
 
 
@@ -446,7 +328,7 @@ function Die() {
   this.value = null;
   this.held = false;
   this.roll = function() {
-    var openSVG = '<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
+    var openSVG = '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
         openG = '<g fill="#000">',
         pip = '',
         closeG = '</g>',

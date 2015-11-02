@@ -7,7 +7,7 @@ A winner is determined by the highest score at the end of the last round. In the
 
 
 ##How to Play
-Players will take turns interacting with the dice and score card areas. To roll the dice, click the *Roll Dice* button. After the roll, players will have to decide which dice to use to score.
+Players will take turns interacting with the dice and score card areas. To roll the dice, click the *Roll Dice* button. After the roll, decide which dice to use to score by clicking them. When ready, select the appropriate category in the score card to populate your score.
 
 ##Scoring
 
