@@ -26,6 +26,8 @@ var game = {
     $('#start-btn').on('click', game.startGame); // call add player method
     $('#roll-btn').on('click', game.rollDice); // call roll dice method if button clicked
     //$('#new-btn').on('click', game.newGame); // call new game method if button clicked
+    // activate score card scoring help
+    $('i.help.circle.icon').popup();
   },
 
   // Create a new player object and add player to the players array
@@ -171,11 +173,33 @@ var game = {
         scoreSinglePip(6);
         break;
       case 'threeOfAKind':
+        var x3Unique = [],
+            sum;
         for (var i = 0; i < game.TOTALDICE; i++) {
-          if (game.dice[i].value === 6) {
-            console.log('add ' + self);
-            square[self].value += game.dice[i].value;
-          }
+          x3Unique.push(game.dice[i].value);
+        }
+        x3Unique = x3Unique.sort();
+        console.log(x3Unique);
+        if ((x3Unique[0] === x3Unique[1] && x3Unique[0] === x3Unique[2]) || (x3Unique[1] === x3Unique[2] && x3Unique[1] === x3Unique[3]) || (x3Unique[2] === x3Unique[3] && x3Unique[2] && x3Unique[4])) {
+          console.log('add ' + self);
+          console.log('SCORE!');
+          sum = x3Unique.sumOfArray();
+          square[self].value = sum;
+        }
+        break;
+      case 'fourOfAKind':
+        var x4Unique = [],
+            sum;
+        for (var i = 0; i < game.TOTALDICE; i++) {
+          x4Unique.push(game.dice[i].value);
+        }
+        x4Unique = x4Unique.sort();
+        console.log(x4Unique);
+        if ((x4Unique[0] === x4Unique[1] && x4Unique[0] === x4Unique[2] && x4Unique[0] === x4Unique[3]) || (x4Unique[1] === x4Unique[2] && x4Unique[1] === x4Unique[3]) && (x4Unique[1] === x4Unique[4])) {
+          console.log('add ' + self);
+          console.log('SCORE!');
+          sum = x4Unique.sumOfArray();
+          square[self].value = sum;
         }
         break;
       case 'fullHouse':
@@ -265,10 +289,10 @@ var game = {
     $(this).addClass('disabled');
     $('#roll-btn').off('click', game.rollDice);
     console.log('Game Over', game.currentPlayer.score);
-    alert('Game Over. Your score was :' + game.currentPlayer.score);
-    // if (game.players.length === 1) {
-    //   alert('Your score is: ' + player.score);
-    // } else {
+    if (game.players.length === 1) {
+      alert('Game over! Your score is: ' + game.currentPlayer.score);
+    }
+    //else {
     //   console.log(Math.max.apply(null, game.players));
     // }
   //   if (game.players[0].score > game.players[1].score) {
@@ -394,6 +418,13 @@ Array.prototype.allValuesSame = function() {
       return true;
     }
   }
+}
+Array.prototype.sumOfArray = function() {
+  var sum = 0;
+  for (var i = 0; i < this.length; i++) {
+    sum += this[i];
+  }
+  return sum
 }
 
 game.init(); // Initialize game
