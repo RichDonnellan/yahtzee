@@ -264,7 +264,7 @@ var game = {
 
     square[self].chosen = true;
     console.log(square[self].value);
-    $('#' + self + '-total').html(square[self].value);
+    $('#' + self + '-total').html(square[self].value).fadeIn();
     $(this).addClass('disabled');
     game.currentPlayer.upperSubTotal();
     game.currentPlayer.lowerSubTotal();

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-html {
+html, body {
+  height: 100%;
   overflow-y: scroll;
 }
 
@@ -59,7 +60,7 @@ header {
 }
 
 .dice-board {
-  margin: 50px auto;
+  padding-top: 30px;
   text-align: center;
 }
 
@@ -68,7 +69,7 @@ header {
   display: inline-block;
   width: 80px;
   height: 80px;
-  border: 1px solid #000;
+  border: 1px solid #666;
   background-color: #fff;
   border-radius: .5rem;
   box-shadow: inset 0 -1px 1px 2px #ccc
@@ -84,10 +85,13 @@ header {
   color: #666;
 }
 
+/* dice pips */
 svg {
   margin: 0;
   padding: 0;
   position: absolute;
+  top:0;
+  left:0;
 }
 
 .held svg g {
@@ -110,16 +114,19 @@ svg {
   text-transform: uppercase;
 }
 
-.disabled {
-  cursor: default;
+.ui.button:disabled, .ui.buttons .disabled.button, .ui.disabled.active.button, .ui.disabled.button, .ui.disabled.button:hover, .disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
 }
 
-.transparent-btn {
-  background-color: transparent;
+/* change input focus border color */
+.ui.input input:focus, .ui.input.focus input {
+  border-color: #21BA45;
 }
 
-.solution {
-  background-color: aquamarine;
+/* override Semantic UI styling */
+.ui.action.input:not([class*="left action"]) input:focus {
+  border-right-color: #21BA45!important;
 }
 
 /* https://github.com/daneden/animate.css/blob/master/source/fading_entrances/fadeInDown.css */
