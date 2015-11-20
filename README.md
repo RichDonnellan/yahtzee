@@ -51,4 +51,4 @@ As a player, I have the option to play against the computer so I can enjoy a com
 
 As a player, I have the option to play against multiple players.
 
-As a player, I can take advantage of the Upper Bonus, Yahtzee Bonus and Joker rules.
+As a player, I can take advantage of the Yahtzee Bonus and Joker rules.

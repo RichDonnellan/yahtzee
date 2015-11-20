@@ -7,7 +7,7 @@
     <title>Yahtzee &#124; Challenge your friends to this addicting game</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.6/semantic.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -17,50 +17,54 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container">
-      <h1 class="text-center animated fadeInDown"><img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Yahtzee_logo.svg" alt="Yahtzee logo"></h1>
-      <!--div class="ui divider"></div>
-      <div class="text-right">Random Text</div>
-      <div class="ui divider"></div-->
+    <div class="container-fluid">
+      <header class="row">
+        <a href="#"><h1 class="text-center animated fadeInDown col-md-12"><img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Yahtzee_logo.svg" alt="Yahtzee logo"></h1></a>
+      </header>
+    </div>
+    <!-- Add player and start button -->
+    <div id="start-wrapper" class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div id="add-player" class="text-center">
-            <div class="ui action input">
-              <input id="name-input" type="text" autofocus="0" placeholder="Enter player name ...">
-              <button id="add-btn" class="ui green right labeled icon button"><i class="add user icon"></i>Add Player</button>
-            </div>
-          </div>
-          <div id="start-game" class="text-center start-game">
-            <button id="start-btn" class="ui red button">Start Game</button>
+        <div id="add-player" class="text-center col-md-12">
+          <div class="ui action input">
+            <input id="name-input" type="text" autofocus="0" placeholder="Enter player name ...">
+            <button id="add-btn" class="ui green right labeled icon button"><i class="add user icon"></i>Add Player</button>
           </div>
         </div>
+        <div id="start-game" class="text-center col-md-12 start-game">
+          <button id="start-btn" class="ui red button">Start Game</button>
+        </div>
       </div>
+    </div>
+    <!-- // Add player and start button // -->
+    <!-- Dice board and score card -->
+    <div class="container">
+      <div id="players-display" class="players-display navbar navbar-default">Players</div>
       <div class="row">
-        <div class="col-md-6 col-sm-4">
-          <div id="dice-board" class="pull-left">
+        <div id="dice-board" class="col-md-6 col-sm-4">
+          <div>
             <div id="die0" class="dice"></div>
             <div id="die1" class="dice"></div>
             <div id="die2" class="dice"></div>
             <div id="die3" class="dice"></div>
             <div id="die4" class="dice"></div>
-            <div id="roll-dice" class="roll-dice text-center">
-              <button id="roll-btn" class="ui button red">Roll Dice</button>
-              <div id="rolls-wrapper" class="rolls-wrapper"><strong>Remaining Roll(s):</strong> <span id="rolls-left"></span></div>
-            </div>
+          </div>
+          <div id="roll-dice" class="roll-dice text-center">
+            <button id="roll-btn" class="ui button red">Roll Dice</button>
+            <div id="rolls-wrapper" class="rolls-wrapper"><strong>Remaining Roll(s):</strong> <span id="rolls-left"></span></div>
           </div>
         </div>
         <div class="col-md-6 col-sm-8">
           <div id="score-wrapper" class="score-wrapper pull-right">
-            <div id="players-display" class="players-display">Players</div>
             <div id="score-card" class="score-card">
               <table class="ui celled table">
                 <tbody>
                   <thead>
                     <tr class="text-center">
-                      <th class="text-uppercase"><strong>Upper Section</strong></th>
-                      <th class="text-uppercase"><strong>Score</strong></th>
-                      <th class="text-uppercase"><strong>Lower Section</strong></th>
-                      <th class="text-uppercase"><strong>Score</strong></th>
+                      <th><strong>Upper Section</strong></th>
+                      <th><strong>Score</strong></th>
+                      <th><strong>Lower Section</strong></th>
+                      <th><strong>Score</strong></th>
                     </tr>
                   </thead>
                   <tr>
@@ -105,25 +109,23 @@
                     <td class="text-uppercase"><button id="chance" class="ui fluid button tiny transparent-btn">Chance</button></td>
                     <td id="chance-total" class="score">&nbsp;</td>
                   </tr>
-                </tbody>
-                <tfoot>
                   <tr>
                     <td class="text-uppercase"><strong>Sub-Total</strong></td>
                     <td id="upperSub" class="score">&nbsp;</td>
                     <td class="text-uppercase"><strong>Sub-Total</strong></td>
                     <td id="lowerSub" class="score">&nbsp;</td>
                   </tr>
-                </tfoot>
+                </tbody>
               </table>
               <div id="new-game" class="text-right">
                 <button id="new-btn" class="ui red button">New Game</button>
               </div>
             </div>
           </div>
-          </div>
         </div>
       </div>
     </div>
+  </div>
 <!-- JavaScript Files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>

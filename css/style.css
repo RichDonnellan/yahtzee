@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+header {
+  background-color: #fff;
+  padding: 30px 0 20px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
 .container {
   padding-top: 40px;
 }
@@ -33,6 +47,10 @@
 .player-name, .player-score {
   font-size: 1rem;
   color: #666;
+}
+
+.player-name {
+  text-transform: capitalize;
 }
 
 .player-info {
@@ -87,8 +105,9 @@ svg {
   font-weight: bold;
 }
 
-th {
+.ui.table thead th {
   text-align: center;
+  text-transform: uppercase;
 }
 
 .disabled {

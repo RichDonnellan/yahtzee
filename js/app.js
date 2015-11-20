@@ -50,19 +50,11 @@ var game = {
     }
   },
 
-  createDice: function() {
-    while (game.dice.length < 5) {
-      var newDie = new Die(); // create a new die
-      game.dice.push(newDie); // push entry to dice array => Object
-      console.log('Die created.'); // confirmation message
-    }
-  },
-
   // Start game functionality
   startGame: function() {
     // $('#add-btn').off('click', game.addPlayer); // remove add player click event
     // $('#start-btn').off('click', game.startGame); // remove start game click event
-    $('#add-player, #start-game').fadeOut(300);
+    $('#start-wrapper').fadeOut(300).detach();
     $('#dice-board').delay(400).fadeIn(1000);
     $('#roll-dice').delay(500).fadeIn(1000);
     $('#rolls-left').html(game.rollsLeft); // insert remaining rolls
@@ -74,6 +66,15 @@ var game = {
     //$('#new-game').delay(2000).fadeIn();
     game.currentPlayer = game.players[0];
     game.createDice(); // create die objects
+  },
+
+  // Create dice objects
+  createDice: function() {
+    while (game.dice.length < 5) {
+      var newDie = new Die(); // create a new die
+      game.dice.push(newDie); // push entry to dice array => Object
+      console.log('Die created.'); // confirmation message
+    }
   },
 
   // Dice roll functionality
@@ -180,7 +181,9 @@ var game = {
         }
         x3Unique = x3Unique.sort();
         console.log(x3Unique);
-        if ((x3Unique[0] === x3Unique[1] && x3Unique[0] === x3Unique[2]) || (x3Unique[1] === x3Unique[2] && x3Unique[1] === x3Unique[3]) || (x3Unique[2] === x3Unique[3] && x3Unique[2] && x3Unique[4])) {
+        if (
+          (x3Unique[0] === x3Unique[1]) && (x3Unique[0] === x3Unique[2]) || (x3Unique[1] === x3Unique[2]) && (x3Unique[1] === x3Unique[3]) || (x3Unique[2] === x3Unique[3]) && (x3Unique[2] && x3Unique[4])
+        ) {
           console.log('add ' + self);
           console.log('SCORE!');
           sum = x3Unique.sumOfArray();
@@ -271,11 +274,14 @@ var game = {
   },
 
   applyBonus: function() {
-    if (game.currentPlayer.scoreCard.upperSub >= 63) {
-      game.currentPlayer.scoreCard.bonus = 35;
-      $('#upper-bonus').html(game.currentPlayer.scoreCard.bonus);
-    } else {
-      $('#upper-bonus').html(game.currentPlayer.scoreCard.bonus);
+    var scoreBox = game.currentPlayer.scoreCard;
+    if (scoreBox.upperSub >= 63) {
+      scoreBox.bonus = 35;
+      $('#upper-bonus').html(scoreBox.bonus).addClass('positive');
+
+    } else if(scoreBox.upperSub < 63 && (scoreBox.ones.chosen === true && scoreBox.twos.chosen === true && scoreBox.threes.chosen === true && scoreBox.fours.chosen === true && scoreBox.fives.chosen === true && scoreBox.sixes.chosen === true)) {
+      $('#upper-bonus').html(scoreBox.bonus);
+      $('#upper-bonus').html(scoreBox.bonus).addClass('negative');
     }
   },
 
@@ -305,7 +311,7 @@ var game = {
 
 },
 changeScoreCard: function(scoreBox){
-  console.log("changeScore",$(scoreBox +"-total"),  game.currentPlayer.scoreCard[scoreBox].value.toString());
+  console.log("changeScore",$(scoreBox +"-total"), game.currentPlayer.scoreCard[scoreBox].value.toString());
   $("#" + scoreBox + "-total").html(game.currentPlayer.scoreCard[scoreBox].value.toString());
 }
 };
