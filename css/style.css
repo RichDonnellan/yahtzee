@@ -1,1 +1,199 @@
 @charset "UTF-8";
+
+html, body {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+header {
+  background-color: #fff;
+  padding: 30px 0 20px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.container {
+  padding-top: 40px;
+}
+
+.start-game, .roll-dice {
+  margin-top: 25px;
+}
+
+.rolls-wrapper {
+  display: block;
+  margin-top: 1.2rem;
+}
+
+.score-wrapper {
+  min-width: 40%;
+}
+
+.players-display {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: .6rem;
+  padding-left: 8px;
+}
+
+.current-player {
+  background-color: #db2828;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.player-name, .player-score {
+  font-size: 1rem;
+  color: #666;
+}
+
+.player-name {
+  text-transform: capitalize;
+}
+
+.player-info {
+  display: inline-block;
+  margin-left: 1.2rem;
+}
+
+.dice-board {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.dice {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #666;
+  background-color: #fff;
+  border-radius: .5rem;
+  box-shadow: inset 0 -1px 1px 2px #ccc
+}
+
+.choose {
+  cursor: pointer;
+}
+
+.held {
+  background: rgba(190, 190, 190, 0.2);
+  border: 1px dashed #666;
+  color: #666;
+}
+
+/* dice pips */
+svg {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top:0;
+  left:0;
+}
+
+.held svg g {
+  fill: #666;
+}
+
+.table>tbody>tr>td, .table>tfoot>tr>td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table>tbody>tr>td.score, .table>tfoot>tr>td.score {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.ui.table thead th {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.ui.button:disabled, .ui.buttons .disabled.button, .ui.disabled.active.button, .ui.disabled.button, .ui.disabled.button:hover, .disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+/* change input focus border color */
+.ui.input input:focus, .ui.input.focus input {
+  border-color: #21BA45;
+}
+
+/* override Semantic UI styling */
+.ui.action.input:not([class*="left action"]) input:focus {
+  border-right-color: #21BA45!important;
+}
+
+/* https://github.com/daneden/animate.css/blob/master/source/fading_entrances/fadeInDown.css */
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}
+
+.shake {
+  animation-name: shake;
+}
+
+@keyframes swing {
+  20% {
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  to {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+.swing {
+  transform-origin: top center;
+  animation-name: swing;
+}
