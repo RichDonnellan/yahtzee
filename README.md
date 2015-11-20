@@ -7,7 +7,10 @@ A winner is determined by the highest score at the end of the last round. In the
 
 
 ##How to Play
-Players will take turns interacting with the dice and score card areas. To roll the dice, click the *Roll Dice* button. After the roll, decide which dice to use to score by clicking them. When ready, select the appropriate category in the score card to populate your score.
+Player(s) will take turns interacting with the dice and score card areas. To roll the dice, click the *Roll Dice* button. After each roll, decide which dice to use to score by clicking on them. When ready, select the appropriate category in the score card to populate your score.
+
+Ready to play? Visit URL to get started! Have fun!
+
 
 ##Scoring
 
@@ -52,3 +55,11 @@ As a player, I have the option to play against the computer so I can enjoy a com
 As a player, I have the option to play against multiple players.
 
 As a player, I can take advantage of the Yahtzee Bonus and Joker rules.
+
+##Technologies/Frameworks used
+* HTML
+* CSS
+* Object-Oriented JavaScript
+* jQuery
+* Bootstrap
+* Semantic UI
