@@ -6,15 +6,15 @@ The object of the game is to score points by rolling five dice to make certain c
 A winner is determined by the highest score at the end of the last round. In the event of a tie, both players win.
 
 
-##How to Play
+## How to Play
 Player(s) will take turns interacting with the dice and score card areas. To roll the dice, click the *Roll Dice* button. After each roll, decide which dice to use to score by clicking on them. When ready, select the appropriate category in the score card to populate your score.
 
 Ready to play? Visit [richdonnellan.com/yahtzee](http://www.richdonnellan.com/yahtzee/) to get started! Have fun!
 
 
-##Scoring
+## Scoring
 
-###Upper Section
+### Upper Section
 
 | Category  | Description                          | Scoring                   |
 | --------- | ------------------------------------ | ------------------------- |
@@ -28,7 +28,7 @@ Ready to play? Visit [richdonnellan.com/yahtzee](http://www.richdonnellan.com/ya
 | **BONUS** | If upper section total is 63 or over | Add 35 bonus points       |
 
 
-###Lower Section
+### Lower Section
 
 | Category        | Description                                         | Scoring         |
 | --------------- | --------------------------------------------------- | --------------- |
@@ -41,21 +41,22 @@ Ready to play? Visit [richdonnellan.com/yahtzee](http://www.richdonnellan.com/ya
 | Chance          | Any combination                                     | Sum of all dice |
 
 
-##User Stories
+## User Stories
 As a player, I have the option to play a full game.
 
 As a player, I can enter my name before playing, so that the experience is more personalized on-screen.
 
 As a player, I control the game with a mouse and can simulate dice rolls and populate my score based on the outcome of the dice.
 
-##Future Implementations
-* Multiple players
-* Implement Yahtzee Bonus and Joker rules
-* Eliminate **popups** and use modals or unobtrusive alerts
-* Improve styling
-* Use a database to keep track of high scores
+## Future Implementations
+* [ ] Multiple players
+* [x] ~Implement Yahtzee Bonus~
+* [ ] Joker rules
+* [ ] Eliminate **popups** and use modals or unobtrusive alerts
+* [ ] Improve styling
+* [ ] Use a database to keep track of high scores
 
-##Technologies/Frameworks
+## Technologies/Frameworks
 * HTML
 * CSS
 * SVG
