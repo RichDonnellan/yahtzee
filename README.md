@@ -9,7 +9,7 @@ A winner is determined by the highest score at the end of the last round. In the
 ## How to Play
 Player(s) will take turns interacting with the dice and score card areas. To roll the dice, click the *Roll Dice* button. After each roll, decide which dice to use to score by clicking on them. When ready, select the appropriate category in the score card to populate your score.
 
-Ready to play? Visit [richdonnellan.com/yahtzee](http://www.richdonnellan.com/yahtzee/) to get started! Have fun!
+Ready to [play everyone's favorite dice game?](https://richdonnellan.github.io/yahtzee/) Have fun!
 
 
 ## Scoring
